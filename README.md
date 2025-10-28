@@ -1,24 +1,24 @@
 # 🤖 Gemini SDK Playground
 
-A **Streamlit-based interactive playground** built using the **Google Gemini SDK**, demonstrating:
-- 💬 **Chat-based Question Answering** using the Gemini chat model.  
-- 🔍 **Text Embeddings and Similarity Search** using Gemini embeddings.
+An interactive **Streamlit app** built with the **Google Gemini SDK**, demonstrating:
+
+- 💬 **Question-Answering Chatbot** using the Gemini chat model  
+- 🔍 **Text Embeddings and Semantic Similarity** using Gemini embeddings  
 
 ---
 
 ## 🚀 Features
 
-### 1. 💬 Question-Answering Chatbot
-- Uses the `gemini-2.5-flash` model.
-- Provides a conversational chat interface with memory.
-- Handles API errors gracefully and maintains chat history.
-- Built with Streamlit’s `st.chat_message()` for a modern chat UI.
+### 💬 1. Gemini Chatbot
+- Uses the `gemini-2.5-flash` model for real-time Q&A.  
+- Maintains conversation history using Streamlit session state.  
+- Clean chat interface built with `st.chat_message()`.  
+- Handles errors gracefully (API or runtime).
 
-### 2. 🔍 Text Embedding & Similarity
-- Generates **text embeddings** using `text-embedding-004`.
-- Computes **cosine similarity** between multiple sentences.
-- Displays similarity as an interactive **pandas DataFrame**.
-- Helps visualize semantic relationships between user-provided texts.
+### 🔍 2. Text Embeddings and Similarity
+- Generates embeddings using the `text-embedding-004` model.  
+- Computes **cosine similarity** between multiple sentences.  
+- Displays results in a structured **pandas DataFrame** for visualization.  
 
 ---
 
@@ -35,18 +35,18 @@ A **Streamlit-based interactive playground** built using the **Google Gemini SDK
 
 ## 📦 Installation
 
-### 1. Clone this repository
+### 1. Clone the repository
 ```bash
-git clone https://github.com/<your-username>/gemini-sdk-playground.git
-cd gemini-sdk-playground
+git clone https://github.com/<your-username>/Gemini-SDK-Playground.git
+cd Gemini-SDK-Playground
 ````
 
-### 2. Create a virtual environment (recommended)
+### 2. (Optional) Create a virtual environment
 
 ```bash
 python -m venv venv
-source venv/bin/activate   # (Linux/Mac)
-venv\Scripts\activate      # (Windows)
+source venv/bin/activate    # Mac/Linux
+venv\Scripts\activate       # Windows
 ```
 
 ### 3. Install dependencies
@@ -57,109 +57,86 @@ pip install streamlit google-genai numpy pandas
 
 ---
 
-## 🔑 Setting Up API Access
+## 🔑 Setup Gemini API Key
 
-1. Visit [Google AI Studio](https://aistudio.google.com/) to get your **Gemini API key**.
-2. Copy your key and paste it into the sidebar input in the Streamlit app.
+1. Go to [Google AI Studio](https://aistudio.google.com/)
+2. Get your **Gemini API key**
+3. Paste it into the sidebar input in the app
 
 ---
 
-## ▶️ Running the App
+## ▶️ Run the App
 
 ```bash
-streamlit run app.py
+streamlit run main.py
 ```
 
-Then open the provided local URL in your browser — usually:
-
-```
-http://localhost:8501
-```
+After running, open the provided URL (usually `http://localhost:8501`).
 
 ---
 
-## 🧠 App Structure
-
-```
-gemini-sdk-playground/
-│
-├── app.py                # Main Streamlit app
-│
-├── functions/
-│   ├── gemini_chat.py    # Chat functionality (Q&A)
-│   ├── gemini_embed.py   # Embedding + cosine similarity
-│   └── config.py         # Client and model setup
-│
-├── requirements.txt
-└── README.md
-```
-
-*(If all code is inside one file, structure can be simplified to just `app.py`.)*
-
----
-
-## 💡 How It Works
+## 🧠 How It Works
 
 ### 🔹 Chatbot
 
-* Creates a chat session with Gemini using:
+* Initializes a Gemini chat session:
 
   ```python
-  client.chats.create(model="gemini-2.5-flash")
+  chat = client.chats.create(model="gemini-2.5-flash")
   ```
-* Maintains conversation context via `st.session_state`.
+* Handles user prompts and responses dynamically.
 
 ### 🔹 Embeddings
 
-* Uses:
+* Generates embeddings using:
 
   ```python
   client.models.embed_content(model="text-embedding-004", contents=texts)
   ```
-* Computes **cosine similarity**:
+* Computes cosine similarity using NumPy:
 
   ```python
-  sim = np.dot(normalized_vectors, normalized_vectors.T)
+  np.dot(normalized_vectors, normalized_vectors.T)
   ```
 
 ---
 
 ## 🧾 Example Use Cases
 
-* Build **interactive chatbots** with Gemini API.
-* Test **semantic similarity** of phrases or sentences.
-* Learn how to integrate **Google GenAI SDK** in Python apps.
-* Prototype **RAG systems** or **document search tools** using embeddings.
+* Build and test **Gemini-based conversational apps**
+* Compare **semantic similarity** between sentences
+* Prototype **AI tools** that use embeddings (RAG, clustering, etc.)
+* Learn **Google Gemini SDK** integration in Streamlit
 
 ---
 
-## 🧰 Future Enhancements
+## 🧰 Project Structure
 
-* Add **file upload** support for text-based Q&A.
-* Visualize **embedding clusters** with t-SNE or PCA.
-* Include **chat history download/export**.
-* Support **multiple Gemini models** (e.g., `gemini-1.5-pro`).
+```
+gemini-sdk-playground/
+│
+├── main.py          # Main Streamlit app file
+└── README.md        # Project documentation
+```
+
+---
+
+## 💡 Future Enhancements
+
+* Add file upload support for Q&A
+* Visualize embeddings using t-SNE or PCA
+* Add chat export (Markdown/PDF)
+* Support multiple Gemini model selections
 
 ---
 
 ## 🧑‍💻 Author
 
-**Aditya Zala**
-AI/ML Engineer | Developer | Research Enthusiast
-[LinkedIn](https://www.linkedin.com/) • [GitHub](https://github.com/<your-username>)
+**Adityasinh Zala** <br>
+AI/ML Engineer | Tech Explorer | Curious Learner   <br>
+[GitHub](https://github.com/AdityaZala3919) • [LinkedIn](https://www.linkedin.com/in/adityasinh-zala-1bbb42258/)
 
 ---
 
-## 📜 License
-
-This project is licensed under the **MIT License** – see the [LICENSE](LICENSE) file for details.
-
----
-
-### ⭐ If you find this helpful, give it a star on GitHub!
-
-```
-🌐 Built with ❤️ using Google Gemini SDK and Streamlit.
-```
-
-Would you like me to make the **`requirements.txt`** file too (with pinned versions for each dependency)?
+⭐ *If you found this helpful, don’t forget to give it a star on GitHub!*
+🌐 *Built with ❤️ using Google Gemini SDK and Streamlit.*
